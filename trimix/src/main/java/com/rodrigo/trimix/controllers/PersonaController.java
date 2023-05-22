@@ -28,9 +28,9 @@ public class PersonaController {
    }
 
 
-   @DeleteMapping(value = "/delete/{idPersona}")
+   @DeleteMapping(value = "/delete")
    @ApiOperation("Elimina una persona por ID")
-   public ResponseEntity<?> delete(@PathVariable("idPersona") Long idPersona) {
+   public ResponseEntity<?> delete(@RequestParam("idPersona") Long idPersona) {
       try {
          personaService.deleteById(idPersona);
          return ResponseEntity.status(HttpStatus.OK).body("Persona eliminada correctamente");
@@ -50,9 +50,9 @@ public class PersonaController {
       }
    }
 
-   @GetMapping(value = "/findById/{idPersona}")
+   @GetMapping(value = "/findById")
    @ApiOperation("Busca una persona por ID")
-   public ResponseEntity<?> findById(@PathVariable("idPersona") Long idPersona) {
+   public ResponseEntity<?> findById(@RequestParam("idPersona") Long idPersona) {
       try {
          return ResponseEntity.status(HttpStatus.OK).body(personaService.findById(idPersona));
       } catch (Exception e) {

@@ -3,12 +3,13 @@ package com.rodrigo.trimix.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "Persona")
-public class Persona {
+public class Persona implements Serializable {
 
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
