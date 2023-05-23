@@ -1,5 +1,6 @@
 package com.rodrigo.trimix.services;
 
+import com.rodrigo.trimix.dtos.FiltroDTO;
 import com.rodrigo.trimix.models.Persona;
 import com.rodrigo.trimix.repositories.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class PersonaService {
 
    public Optional<Persona> findById(Long aLong) {
       return personaRepository.findById(aLong);
+   }
+
+   public List<Persona> filter(FiltroDTO filtro){
+      return personaRepository.filter(filtro.getNombre(), filtro.getTipoDoc());
    }
 
 }

@@ -1,5 +1,6 @@
 package com.rodrigo.trimix.controllers;
 
+import com.rodrigo.trimix.dtos.FiltroDTO;
 import com.rodrigo.trimix.models.Persona;
 import com.rodrigo.trimix.services.PersonaService;
 import io.swagger.annotations.ApiOperation;
@@ -55,6 +56,16 @@ public class PersonaController {
    public ResponseEntity<?> findById(@RequestParam("idPersona") Long idPersona) {
       try {
          return ResponseEntity.status(HttpStatus.OK).body(personaService.findById(idPersona));
+      } catch (Exception e) {
+         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al buscar la persona: " + e.getMessage());
+      }
+   }
+
+   @PostMapping(value = "/filter")
+   @ApiOperation("Busca una persona por filtro")
+   public ResponseEntity<?> filter(@RequestBody FiltroDTO filtro) {
+      try {
+         return ResponseEntity.status(HttpStatus.OK).body(personaService.filter(filtro));
       } catch (Exception e) {
          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al buscar la persona: " + e.getMessage());
       }
