@@ -29,12 +29,12 @@ public class PersonaController {
    }
 
 
-   @DeleteMapping(value = "/delete")
+   @DeleteMapping(value = "/delete/{idPersona}")
    @ApiOperation("Elimina una persona por ID")
-   public ResponseEntity<?> delete(@RequestParam("idPersona") Long idPersona) {
+   public ResponseEntity<?> delete(@PathVariable("idPersona") Long idPersona) {
       try {
          personaService.deleteById(idPersona);
-         return ResponseEntity.status(HttpStatus.OK).body("Persona eliminada correctamente");
+         return ResponseEntity.ok("Persona eliminada correctamente");
       } catch (Exception e) {
          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al eliminar la persona: " + e.getMessage());
       }
@@ -51,9 +51,9 @@ public class PersonaController {
       }
    }
 
-   @GetMapping(value = "/findById")
+   @GetMapping(value = "/findById/{idPersona}")
    @ApiOperation("Busca una persona por ID")
-   public ResponseEntity<?> findById(@RequestParam("idPersona") Long idPersona) {
+   public ResponseEntity<?> findById(@PathVariable("idPersona") Long idPersona) {
       try {
          return ResponseEntity.status(HttpStatus.OK).body(personaService.findById(idPersona));
       } catch (Exception e) {
@@ -67,7 +67,7 @@ public class PersonaController {
       try {
          return ResponseEntity.status(HttpStatus.OK).body(personaService.filter(filtro));
       } catch (Exception e) {
-         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al buscar la persona: " + e.getMessage());
+         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al buscar las personas: " + e.getMessage());
       }
    }
 

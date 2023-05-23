@@ -19,7 +19,7 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
            "p.perTipoDocumento) " +
            "FROM Persona p " +
            "WHERE p.perNombre LIKE %:nombre% " +
-           "AND p.perTipoDocumento = :tipoDoc ")
+           "AND p.perTipoDocumento LIKE %:tipoDoc% ")
    List<Persona> filter(@Param("nombre") String nombre, @Param("tipoDoc") String tipoDoc);
 
 }
